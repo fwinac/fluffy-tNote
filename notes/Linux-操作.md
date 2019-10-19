@@ -145,8 +145,9 @@ $ date --help
     `参考`
 
     - +4、4 和 -4 的指示的时间范围如下：
-      <div align="center"> <img src="pics/658fc5e7-79c0-4247-9445-d69bf194c539.png" width=""/> </div><br>
-
+      
+    <div align="center"> <img src="pics/658fc5e7-79c0-4247-9445-d69bf194c539.png" width=""/> </div><br>
+  
 - 命令行生成文件
 
   ```shell
@@ -614,6 +615,8 @@ $ sudo kill -9 `ps -aux|grep java|grep -v grep|awk '{print $2}'`
 
 # Shell
 
+## 基础
+
 - 特殊注释
 
   #!
@@ -652,10 +655,28 @@ $ sudo kill -9 `ps -aux|grep java|grep -v grep|awk '{print $2}'`
 
 - $? 上一个执行程序的返回值
 
-- 示例
+- eval 和 exec
 
-  ```bash
-  # script1.sh
+  都是 shell built-in command
+
+  shell 默认执行程序，会创建子进程。exec 则会替换掉 shell 进程，而不是创建子进程
+
+  eval 也创建子进程，但是它会将执行的 command 先替换为实际值，再执行
+
+  ```shell
+  command=ls
+  # 下面的命令没有办法执行
+  $command
+  # 下面的可以执行
+  eval $command
+  ```
+
+## 示例
+
+- 服务启动
+
+  ```shell
+  # do_start.sh
   #!/bin/bash
   # 该脚本用于示范
   
@@ -684,35 +705,49 @@ $ sudo kill -9 `ps -aux|grep java|grep -v grep|awk '{print $2}'`
   echo '      service use      '
   echo 'Please do something:****'
   echo '========================'
-  
-  # scirpt2.sh
+
+  # start.sh
   #!/bin/bash
   
   if [[ ! -f /.wx7i_excute ]];then
   # 绝对路径
-  	/script1.sh
+  	./do_start.sh
   fi
-  
-  # Others
   ```
-
-- eval 和 exec
-
-  都是 shell built-in command
-
-  shell 默认执行程序，会创建子进程。exec 则会替换掉 shell 进程，而不是创建子进程
-
-  eval 也创建子进程，但是它会将执行的 command 先替换为实际值，再执行
+  
+- 设置 alias
 
   ```shell
-  command=ls
-  # 下面的命令没有办法执行
-  $command
-  # 下面的可以执行
-  eval $command
+  # Proxy
+  function proxy_status(){
+  # = 判断字符串
+          if [ "$all_proxy" = "" ];then
+                  echo 'proxy is off.'
+          else
+                  echo 'proxy is on.'
+          fi
+  }
+  
+  function proxy_on(){
+          export all_proxy="socks://127.0.0.1:1080"
+          export http_proxy="http://127.0.0.1:8001"
+          export https_proxy="http://127.0.0.1:8001"
+          export no_proxy="localhost,127.0.0.1/8,::1"
+          proxy_status
+  }
+  
+  function proxy_off(){
+          unset all_proxy
+          unset http_proxy
+          unset https_proxy
+          unset no_proxy
+          proxy_status
+  }
+  alias pon='proxy_on'
+  alias poff='proxy_off'
+  alias pst='proxy_status'
   ```
 
-  
 
 # 其他
 
