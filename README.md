@@ -24,7 +24,7 @@
 - [C++](notes/c++.md)
 - [c#](notes/c#.md)
 
-# 前端
+## :point_right: 前端
 
 - [HTML-CSS](notes/HTML-CSS.md)
 

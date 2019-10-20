@@ -8,25 +8,7 @@
   # 如果目录不存在，则是bios。
   ls /sys/firmware/efi/efivars。
   ```
-
-- 连接网络
-
-  ```shell
-  # 连接热点
-  wifi-menu
-  # 测试网络，直到连通
-  ping baidu.com
-  ```
-
-- 更新时间
-
-  ```shell
-  timedatectl set-ntp true
-  ```
-
-- 配置 pacman 镜像
-  搜索 tuna 的镜像行，复制，放到 /etc/pacman.d/mirrorlist 的“第一行”
-
+  
 - 分区
 
   ```shell
@@ -41,19 +23,54 @@
   ```shell
   # 查看分区情况 
   fdisk -l
-  mkfs.ext4 /dev/**
+  mkfs.fat -F32 /dev/**
+  # 设置分区的标签为 root，不然要用 UUID 引用分区
+  mkfs.ext4 -L root /dev/**
   # 设置交换分区
   mkswap /dev/**
   swapon /dev/**
   ```
 
 - 挂载分区
-  root挂载到/mnt；在mnt创建相应文件夹，然后将efi挂载到/mnt/boot/EFI，home挂载到/mnt/home
+  root 挂载到 /mnt；在 mnt 创建相应文件夹，然后将 efi 挂载到 /mnt/boot/EFI，home 挂载到 /mnt/home
+  
+- 连接网络
 
+  ```shell
+  # 连接有限网络
+  dhcpd
+  # 获取 ip 地址
+  # 连接热点
+  NetworkManager 用于管理 wifi 连接，和 iw 同类
+  nmcli dev wifi list
+  nmcli dev wifi connect <SSID> password <password> [hidden yes]
+  nmcli connection delete CONNECTION_NAME # 上面连接失败后，以后的连接仍然用错误凭证，所以先删除
+  # 测试网络，直到连通
+  ping baidu.com
+  ```
+  
+- 更新时间
+
+  在联网时，及安装时验证证书有效
+
+  ```shell
+  timedatectl set-ntp true
+  ```
+
+- 配置 pacman 镜像源
+  
+  将：https://mirrors.huaweicloud.com/archlinux/
+  
+  和 tuna
+  
+  放到 /etc/pacman.d/mirrorlist 的前面
+  
 - 安装基础包
 
   ```shell
-  pacstrap /mnt base
+  pacstrap /mnt base linux linux-firmware networkmanager sudo ntfs-3g dnsmasq
+  # ntfs-3g os-prober 和 dolphin 需要
+  # dnsmasq 在创建热点时用于作 dns 服务器
   ```
 
 - 生成分区表
@@ -65,10 +82,22 @@
 
 - 切入 /mnt 中
 
+  相比`chroot`，`arch-chroot`可以自行挂载 /run
+
   ```shell
   arch-chroot /mnt
   ```
-
+  
+- 设置主机名
+  ```shell
+  echo ** > /etc/hostname
+  ```
+  
+- 设置root的密码
+  ```shell
+  passwd
+  ```
+  
 - 设置时区
 
   ```shell
@@ -80,44 +109,34 @@
 - 本地化设置
 
   ```shell
-  # 1. 将/etc/locale.gen中的en_US.UTF-8注释去掉
-  # 2.
+  # 1. 
+  将/etc/locale.gen中的
+  en_US.UTF-8
+  zh_CN.UTF-8
+  zh_HK.UTF-8
+  注释去掉
+  # 2.生成 locale
   locale-gen
-  # 3.
+  # 3.设置默认 locale，UI、命令行尽量用英文
   echo 'LANG=en_US.UTF-8' >/etc/locale.conf
-  ```
-
-- 设置主机名
-
-  ```shell
-  echo ** > /etc/hostname
   ```
 
 - 设置hosts文件
 	
 	```
-	127.0.0.1	localhost.localdomain	localhost
-	::1		localhost.localdomain	localhost
-	127.0.1.1	<主机名>.localdomain	<主机名>
+	127.0.0.1	localhost
+	::1		localhost
+	127.0.1.1	myhostname.localdomain	myhostname
 	```
-	
-- 安装networkmanager，dialog
-
-- 设置root的密码
-
-  ```shell
-  passwd
-  ```
 
 - 安装引导程序
-  UEFI
 
   ```shell
-  pacman -S dosfstools grub efibootmgr
-  grub-install --target=x86_64-efi --efi-directory=<EFI 分区挂载点> --bootloader-id=<GRUB的自定义名字>
+  pacman -S grub efibootmgr os-prober
+  grub-install --target=x86_64-efi --efi-directory=<EFI 分区挂载点> --bootloader-id=<启动项在 BIOS 中的名字>
   grub-mkconfig -o /boot/grub/grub.cfg
   ```
-  
+
 - 退出安装
 
   ```shell
@@ -133,13 +152,18 @@
 - 添加新用户
 
   ```shell
-  useradd -m -g users -s /bin/bash fwinac
+  useradd -m -G wheel -s /bin/bash fwinac
+  # -m 创建相应 home 目录
   passwd fwinac
   ```
 
 - 设置新用户可 sudo  
-  安装 sudo，并在 /etc/sudoers 中 fwinac 后添加和 root 后一样的内容
+  在 /etc/sudoers 中 fwinac 后添加和 root 后一样的内容
 
+  或：
+  
+  将 /etc/sudoers 中 %wheel 前的注释去掉
+  
 - 屏蔽 nouveau
   在 /etc/modprobe.d/nouveau_blacklist.conf 添加 blacklist nouveau
 
@@ -149,13 +173,18 @@
   1. 在 /etc/lightdm/lightdm.conf设置
      [Seat:*]
      greeter-session=lightdm-deepin-greeter
-  1. systemctl enable lightdm
+
+- 设置 DE 程序开机启动
+
+  1. systemctl enable lightdm/sddm
   1. systemclt enable NetworkManager
+  1. systemctl enable bluetooth
 
 - 安装字体
+  
+  noto，no tofu
+  
   noto-fonts noto-fonts-cjk noto-fonts-emoji
-
-- 重启
 
 - 添加 archlinuxcn 源
 
@@ -173,13 +202,15 @@
      ```
 
 - 安装输入法
-	1. 安装 fcitx-im fcitx-configtool fcitx-sunpinyin
-	2. vim ~/.xprofile  
-  ```
-	export GTK_IM_MODULE=fcitx
-	export QT_IM_MODULE=fcitx
-	export XMODIFIERS="@im=fcitx"
-  ```
+	1. 安装 fcitx-im fcitx-configtool/kcm-fcitx
+	
+	2. vim ~/.xprofile(xprofile 适用 xorg，也可添加到 ~/.pam_environment，不用加 export) 
+	
+	   ```shell
+	   export GTK_IM_MODULE=fcitx
+	   export QT_IM_MODULE=fcitx
+	   export XMODIFIERS="@im=fcitx"
+	   ```
 
 `参考`
 - [中文动图安装参考](https://bbs.archlinuxcn.org/viewtopic.php?id=1037)
@@ -211,7 +242,6 @@
 
 ## 删除多余自带
 <div aligh="center"><img src="pics/20190501232901.png"/></div>
-
 # i3wm
 
 - 设置缩放
@@ -223,7 +253,6 @@
 
 - 复制 github 相关配置文件到系统中
 
-  
 - 重启
 
 - 添加代理
@@ -246,7 +275,6 @@
 - **Neon**
 
 <div aligh="center"><img src="pics/20190501232301.png"/></div>
-
 - **Kubuntu**
 
   搜狗官网
@@ -293,9 +321,6 @@ netease-cloud-music --force-device-scale-factor=1.25
 
 ## KDE不能用Deepin-Wine
 <div aligh="center"><img src="pics/20190501233601.png"/></div>
-
-
-
 # 安装 CLI 词典
 - 安装
 
