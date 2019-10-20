@@ -164,7 +164,7 @@
   
   将 /etc/sudoers 中 %wheel 前的注释去掉
   
-- 屏蔽 nouveau
+- 屏蔽 nouveau，安装 bbswitch
   在 /etc/modprobe.d/nouveau_blacklist.conf 添加 blacklist nouveau
 
 - 安装dde
