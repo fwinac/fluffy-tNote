@@ -102,7 +102,20 @@ $ date --help
   时间: 如，now
   ```
 
+# 负载
+
+如：top、uptime
+
+其中 load average 依次表示在 1min、5min 和 15min 需要的 CPU 时间。
+
+假设为：2.9、2.6、2.2
+
+依次表示需要 2.9\*1min、2.6\*5min、2.2\*15min 个 CPU 时间
+
+如果为 CPU 可以并行执行两个，可以依次提供 2\*1min、2\*5min、2\*15min 个 CPU 时间
+
 # 文件操作
+
 ## 常用
 - ls、cd、mkdir、rmdir、touch、cp、rm、mv
 
