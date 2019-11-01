@@ -37,7 +37,6 @@ xset b 0 0 0
 BIOS（Basic Input/Output System，基本输入输出系统），它是一个固件，存放在ROM中。
 
 <div align="center"> <img src="pics/50831a6f-2777-46ea-a571-29f23c85cc21.jpg"/> </div><br>
-
 BIOS 是开机的时候计算机执行的第一个程序，读取磁盘第一个扇区的主要开机记录（MBR），执行其中的开机管理程序，通过它选择和加载接下来要执行的文件(如操作系统核心文件，grub等，惠普电脑开机F9选择启动设备?)。
 
 `参考`
@@ -47,6 +46,8 @@ BIOS 是开机的时候计算机执行的第一个程序，读取磁盘第一个
 ## UEFI
 
 BIOS 不可以读取 GPT 分区表，而 UEFI 可以。
+
+机器启动会执行 esp 分区中的 efi 程序，efi 程序会根据配置找到 grub 程序(/boot/grub)，grub 程序读取配置(/boot/grub/grub.cfg) 生成启动项。
 
 
 # 磁盘
@@ -58,25 +59,21 @@ BIOS 不可以读取 GPT 分区表，而 UEFI 可以。
 IDE（ATA）全称 Advanced Technology Attachment，接口速度最大为 133MB/s，因为并口线的抗干扰性太差，且排线占用空间较大。
 
 <div align="center"> <img src="pics/924914c0-660c-4e4a-bbc0-1df1146e7516.jpg" width="400"/> </div><br>
-
 ### SATA
 
 SATA 全称 Serial ATA。抗干扰性强；支持热插拔等功能；速度更快，SATA-II 的接口速度为 300MiB/s，而新的 SATA-III 标准可达到 600MiB/s 的传输速度。线更细。
 
 <div align="center"> <img src="pics/f9f2a16b-4843-44d1-9759-c745772e9bcf.jpg" width=""/> </div><br>
-
 ### SCSI
 
 SCSI 全称是 Small Computer System Interface（小型机系统接口），不是专门为硬盘设计的接口。特性更多，如 CPU 占用率较低。价格较贵。
 
 <div align="center"> <img src="pics/f0574025-c514-49f5-a591-6d6a71f271f7.jpg" width=""/> </div><br>
-
 ### SAS
 
  *SAS(Serial Attached SCSI)*即串行连接*SCSI*，速度更快，线更细(占用空间更少>机箱通风更好)。
 
 <div align="center"> <img src="pics/6729baa0-57d7-4817-b3aa-518cbccf824c.jpg" width=""/> </div><br>
-
 `参考`
 
 - [IDE、SATA、SCSI、SAS、FC、SSD 硬盘类型介绍](https://blog.csdn.net/tianlesoftware/article/details/6009110)
@@ -149,17 +146,14 @@ inode 具有以下特点：
 inode 中记录了文件内容所在的 block 编号，但是每个 block 非常小，一个大文件随便都需要几十万的 block。而一个 inode 大小有限，无法直接引用这么多 block 编号。因此引入了间接、双间接、三间接引用。间接引用是指，让 inode 记录的引用 block 块记录引用信息。
 
 <div align="center"> <img src="pics/inode_with_signatures.jpg" width="600"/> </div><br>
-
 ## 文件读取
 
 对于 Ext2 文件系统，当要读取一个文件的内容时，先在 inode 中去查找文件内容所在的所有 block，然后把所有 block 的内容读出来。
 
 <div align="center"> <img src="pics/83185315-793a-453a-a927-5e8d92b5c0ef.jpg"/> </div><br>
-
 而对于 FAT 文件系统，它没有 inode，每个 block 中存储着下一个 block 的编号。
 
 <div align="center"> <img src="pics/075e1977-7846-4928-96c8-bb5b0268693c.jpg"/> </div><br>
-
 ## 磁盘碎片
 
 指一个文件内容所在的 block 过于分散。
@@ -190,7 +184,6 @@ ext3/ext4 文件系统引入了日志功能，可以利用日志来修复文件�
 - /var (variable)：存放系统或程序运行过程中的数据文件。
 
 <div align="center"> <img src="pics/linux-filesystem.png" width=""/> </div><br>
-
 `参考`
 
 - [File system design case studies](https://www.cs.rutgers.edu/\~pxk/416/notes/13-fs-studies.html)
@@ -253,7 +246,6 @@ export PATH = /省略/bin:$PATH
 <br>
 
 <div align="center"> <img src="pics/76a49594323247f21c9b3a69945445ee.png" width=""/> </div><br>
-
 ## SIGCHLD
 
 当一个子进程改变了它的状态时（停止运行，继续运行或者退出）会发送SIGCHLD
@@ -263,7 +255,6 @@ SIGCHLD 信号包含了子进程的信息，比如进程 ID、进程状态、进
 在子进程退出时，它的进程描述符(PCB)不会立即释放，这是为了让父进程得到子进程信息，父进程通过 wait() 和 waitpid() 来获得一个已经退出的子进程的信息。
 
 <div align="center"> <img src="pics/flow.png" width=""/> </div><br>
-
 ## wait()
 
 ```c

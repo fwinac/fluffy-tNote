@@ -226,22 +226,6 @@
   # 然后重启电脑，如果提示语言更改，保留旧的名称即可
   ```
 
-# Ubuntu
-
-## 显卡驱动
-
-1. 启动时在 quiet splash 后加 nouveau.modeset=0
-
-2. 启动后
-
-   ```shell
-   $ ubuntu-drivers devices
-   $ ubuntu-drivers autoinstall
-   ```
-
-
-## 删除多余自带
-<div aligh="center"><img src="pics/20190501232901.png"/></div>
 # i3wm
 
 - 设置缩放
@@ -268,60 +252,8 @@
 
   - 脚本在 refs 目录下的 pchrome.sh
 
-# KDE
+## 安装 CLI 词典
 
-## 输入法
-
-- **Neon**
-
-<div aligh="center"><img src="pics/20190501232301.png"/></div>
-- **Kubuntu**
-
-  搜狗官网
-
-## 美化
-
-- **方案一**
-
-  1. <div aligh="center"><img src="pics/20190501233901.png"/></div>
-  1. Latte Dock
-  1. 使右键菜单半透明  
-     setting->Application Style->Widget Style->config(Widget style右边)->Transparency(右边空三格)
-  1. 改变Window decorations的颜色
-     setting->Colors，选择Breeze Light
-
-- **方案二**
-
-  安装kvantum(github搜索，按照INSTALL安装)。找到kvantum主题fluent dark；将icon换成flat-remix；setting的显示方式换成tree view
-
-## 全局菜单chrome无
-
-安装libdbusmenu-glib
-
-## 很短时间就锁屏
-
-Desktop Behavior（或在设置中搜索 lock）
-
-## Chrome不能默认
-
-Application->File Associations，搜索html
-
-applicaition中的xhtml+xml和text中的html，它们中把chrome浏览器的位置提高。
-
-## docx等被当压缩文件
-
-> removed the 3 xml files wps-office-et.xml wps-office-wpp.xml wps-office-wps.xml from /usr/share/mime/packages/ then "sudo update-mime-database /usr/share/mime" then I assigned the .xlsx format to et, the .docx format to wps and it is OK now!
-
-## 网易云音乐没缩放
-
-```bash
-netease-cloud-music --force-device-scale-factor=1.25
-#应该在命令行这样启动
-```
-
-## KDE不能用Deepin-Wine
-<div aligh="center"><img src="pics/20190501233601.png"/></div>
-# 安装 CLI 词典
 - 安装
 
   ```shell
@@ -359,6 +291,10 @@ netease-cloud-music --force-device-scale-factor=1.25
 `参考`
 
   - [在命令行查词典](https://www.jianshu.com/p/661c8e5bed86)
+
+# 内核模块
+
+debian 系在 blacklist 内核模块后需要 `sudo update-initramfs -u`
 
 # 发行版及桌面对比
 
@@ -411,7 +347,7 @@ netease-cloud-music --force-device-scale-factor=1.25
 
 - 对 Nvidia 显卡支持不好。安装麻烦，使用起来不稳定：Fedora 不停报错，Arch 安装驱动后，启动直接黑屏。
 - DDE 主要是在 deepin 上开发的，所以，除 deepin 外都会遇到小问题。
-- Arch 安装输入法比较麻烦，而且搜狗输入法用不了，莫名报错。
+- Arch 程序比较新，而且程序对 Arch、Fedora 适配不太好：比如 Android Studio 主要在 ubuntu 下开发，导致教程中的配置方式在 Arch 不适用。
 
 ## 国外发行版
 
