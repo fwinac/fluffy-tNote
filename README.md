@@ -20,7 +20,6 @@
 
 ## :o: C
 
-- [C](notes/c.md)
 - [C++](notes/c++.md)
 - [c#](notes/c#.md)
 
