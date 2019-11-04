@@ -292,6 +292,38 @@
 
   - [在命令行查词典](https://www.jianshu.com/p/661c8e5bed86)
 
+# 编译内核
+
+debian、build-essential、kernel-package（打包deb）、libncurses5-dev（new curses在terminal中实现图形界面）、fakeroot、libssl-dev
+
+```shell
+make mrproper #清理 source tree，使其回复到刚解压的状态
+```
+
+```shell
+cp /boot/config-`uname -r`* .config　#将现有配置文件拷贝到.config文件夹
+```
+
+```shell
+make olddefconfig #依据配置文件配置新内核，新设置用缺省值
+```
+
+```shell
+make menuconfig #打开terminal gui，手动定制
+```
+
+```shell
+make -j8 deb-pkg #编译并打包，会生成 header、lib、image、dbg，dbg 不用安装
+```
+
+```shell
+sudo dpkg -i linux-*.deb
+```
+
+```shell
+sudo dpkg --purge linux-image-5.1.20
+```
+
 # 内核模块
 
 debian 系在 blacklist 内核模块后需要 `sudo update-initramfs -u`
