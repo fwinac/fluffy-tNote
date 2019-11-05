@@ -1,59 +1,19 @@
-# 环境
-## Maven
-Maven 是 Java 的“编译系统”；可用于获取第三方包，并可设置编译过程及行为。
-
-Maven 本身不执行具体的任务，如编译、打包，而是交给插件（plugin-in）的目标（goal）来做；goal 是一类动作的组合。一个编译过程由几个阶段（phase）组成，检查、编译、测试、打包等。phase 要和 goal 关联，并且每个 phase 默认就关联若干个 goal。
-
-以下是一些常用设置：
-
-- **设置镜像**
-	IntelliJ IDEA 2016.3.2\plugins\maven\lib\maven3\conf\settings.xml里的mirrors段里面
-	
-	```xml
-	 <mirror>
-	    <id>alimaven</id>
-	    <name>aliyun maven</name>
-	    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-		  <mirrorOf>central</mirrorOf>       
-	 </mirror>
-	```
-	
-- **编译后jar包名**
-
-  ```xml
-  <build>
-  	 <finalName>dev-manager</finalName>
-  ```
-
-- **源码中的xml未编译**
-
-  ```xml
-  <build>
-  	<resources>
-  		<resource>
-  			<directory>src/main/java
-  			<includes>
-  					<include>**/*.xml(ant匹配，java文件夹及子目录的xml文件)
-  ```
-
-  
-
-`参考`
-
-- 为什么每个 phase 默认“有” goal?
-
-- 镜像是什么?有什么用？
-- Java 的“编译”过程是怎样的?和 C 语言的过程有什么不同? Maven 在编译过程中起什么作用?
-- [Maven Tutorials](https://www.vogella.com/tutorials/ApacheMaven/article.html)
-
+# 要求
 ## JRE or JDK
 
 - JRE is the JVM program, Java application need to run on JRE.
 - JDK is a superset of JRE, JRE + tools for developing java programs. e.g, it provides the compiler "javac"
+## CLASSPATH
+
+java 程序寻找可执行文件的位置，默认为当前文件夹。运行时必须指定 包名＋类名。
+
+## Maven
+
+Maven 是 Java 的“编译系统”；可用于获取第三方包，并可设置编译过程及行为。
+
+Maven 本身不执行具体的任务，如编译、打包，而是交给插件（plugin-in）的目标（goal）来做；goal 是一类动作的组合。一个编译过程由几个阶段（phase）组成，检查、编译、测试、打包等。phase 要和 goal 关联，并且每个 phase 默认就关联若干个 goal。
 
 # 数据类型
-
-Java 的基础类型有两类：基本类型和包装类型。
 
 ## 基本类型
 
@@ -80,19 +40,13 @@ a == b;
 
 ## 比较
 
-- 泛型问题
-
-  
-
-  Integer a = 123;
-
-  = > ==
+- 泛型
 
 - 包装类型使用缓存池
 
-- 不可变
-
 - == 比较不拆箱
+
+- 不可变
 
 ## 缓存池
 
