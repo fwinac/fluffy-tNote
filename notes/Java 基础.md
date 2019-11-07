@@ -348,52 +348,7 @@ public interface InterfaceExample {
 
 ## super
 
-- 访问父类的成员：通过使用 super 关键字引用父类的方法实现。
-
-```java
-public class SuperExample {
-
-    protected int x;
-    protected int y;
-
-    public SuperExample(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void func() {
-        System.out.println("SuperExample.func()");
-    }
-}
-```
-
-```java
-public class SuperExtendExample extends SuperExample {
-
-    private int z;
-
-    public SuperExtendExample(int x, int y, int z) {
-        super(x, y);
-        this.z = z;
-    }
-
-    @Override
-    public void func() {
-        super.func();
-        System.out.println("SuperExtendExample.func()");
-    }
-}
-```
-
-```java
-SuperExample e = new SuperExtendExample(1, 2, 3);
-e.func();
-```
-
-```html
-SuperExample.func()
-SuperExtendExample.func()
-```
+- 子类不继承父类构造函数，所以子类必须定义自己的。另外，构造函数中默认会“隐式”调用父类的无参构造函数。
 
 ## 重写与重载
 

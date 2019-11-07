@@ -252,7 +252,7 @@
 
   - 脚本在 refs 目录下的 pchrome.sh
 
-## 安装 CLI 词典
+# 安装 CLI 词典
 
 - 安装
 
@@ -294,18 +294,24 @@
 
 # 编译内核
 
-debian、build-essential、kernel-package（打包deb）、libncurses5-dev（new curses在terminal中实现图形界面）、fakeroot、libssl-dev
+debian、build-essential、kernel-package（打包deb）、libncurses5-dev（new curses在terminal中实现图形界面）、fakeroot、libssl-dev、flex、bison
 
 ```shell
 make mrproper #清理 source tree，使其回复到刚解压的状态
 ```
 
 ```shell
-cp /boot/config-`uname -r`* .config　#将现有配置文件拷贝到.config文件夹
+patch -p1 <  *.patch #打补丁
 ```
 
 ```shell
-make olddefconfig #依据配置文件配置新内核，新设置用缺省值
+cp /boot/config-`uname -r`* .config　#将现有配置文件拷贝到.config文件夹
+# 为什么要make，因为新的内核可能会增加新的配置项，所以.config还不能直接用
+make olddefconfig #依据配置文件配置新内核，新设置用推荐值
+```
+OR
+```shell
+make localmodconfig #根据当前使用情况载入配置
 ```
 
 ```shell
@@ -317,11 +323,11 @@ make -j8 deb-pkg #编译并打包，会生成 header、lib、image、dbg，dbg �
 ```
 
 ```shell
-sudo dpkg -i linux-*.deb
+sudo apt install linux-*.deb
 ```
 
 ```shell
-sudo dpkg --purge linux-image-5.1.20
+sudo apt purge remove linux-image/headers-
 ```
 
 # 内核模块
