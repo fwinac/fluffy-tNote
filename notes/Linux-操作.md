@@ -42,7 +42,7 @@ YUM 基于 RPM，APT 基于 DPKG。前者都添加了在线功能。
 ## 权限
 - SUID，SGID，Sticky Bit
   
-  前两个表示执行该文件时，该文件的有效用户/组（执行该程序的用户/组）在该程序看来就变成了该程序的所属。
+  前两个表示执行该文件时，该文件的有效，变成了该文件的所属，而不是用户所属。
   
   ​	- passwd 命令需要修改 /etc/passwd 文件（该文件属于root），那么passwd 在不特权时是怎么修改自己的密码的
   
@@ -52,7 +52,7 @@ YUM 基于 RPM，APT 基于 DPKG。前者都添加了在线功能。
   
   ```shell
   # 使用
-  chmod 4777 **
+  chmod 4777 ** #SUID
   chmod 2777 **
   chmod 1777 **
   ```
@@ -168,15 +168,16 @@ $ date --help
   # -e enable backslash，加了之后\n才生效
   ```
 
-- 行处理文件 sed
+- stream editor，sed
 
   ```shell
   $ sed -i '2,5c hello' xx
   $ sed -i 's/abc/a/g' xx
   # -i in place，不加则不会修改源文件
-  ```
-
-   
+  $ sed 's;/.*;;' xx
+```
+  
+  sed 把 s(substitue) 后的第一个字符当作分隔符 
 # 获取文件内容
 - **cat**
 取得文件内容。
@@ -634,7 +635,7 @@ $ sudo kill -9 `ps -aux|grep java|grep -v grep|awk '{print $2}'`
 
   #!
 
-- =、!= 等等，两边不能有空格
+- =、!= 等等，两边不能有空格，有空格就是 command
 
 - [] 在 shell 中对应 test command，[[]] 则是 bash 特有的语法，有几点提升：
 
@@ -683,6 +684,12 @@ $ sudo kill -9 `ps -aux|grep java|grep -v grep|awk '{print $2}'`
   # 下面的可以执行
   eval $command
   ```
+
+- bash 脚本开始的 `set -ex`
+
+  -e ，当脚本某行出错时，脚本不再执行
+
+  -x，显示正在执行的命令
 
 ## 示例
 
