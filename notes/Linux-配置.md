@@ -1,7 +1,4 @@
 # Arch
-
-## 安装
-
 - 判断是uefi还是bios
 
   ```shell
@@ -252,45 +249,6 @@
 
   - 脚本在 refs 目录下的 pchrome.sh
 
-# 安装 CLI 词典
-
-- 安装
-
-  ```shell
-  $ sudo apt install dictd dict
-  ```
-
-- 启动 dictd 服务
-
-  ```shell
-  $ sudo systemctl start dictd
-  ```
-
-- 下载词典数据库放到 /usr/share/dictd
-
-- 配置词典数据库
-
-  在 /var/lib/dictd/db.list 添加
-
-  ```
-  database langdao-ec 
-   {
-    data  /usr/share/dictd/langdao-ec.dict.dz
-    index /usr/share/dictd/langdao-ec.index
-  }
-  ```
-
-- 重启 dictd 服务
-
-  ```shell
-  $ sudo sytemctl restart dictd
-  ```
-
-  
-
-`参考`
-
-  - [在命令行查词典](https://www.jianshu.com/p/661c8e5bed86)
 
 # 编译内核
 
