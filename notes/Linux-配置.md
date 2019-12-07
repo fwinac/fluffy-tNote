@@ -34,16 +34,15 @@
 - 连接网络
 
   ```shell
-  # 连接有限网络
+  # 连接有线网络
   dhcpd
-  # 获取 ip 地址
   # 连接热点
   NetworkManager 用于管理 wifi 连接，和 iw 同类
   nmcli dev wifi list
   nmcli dev wifi connect <SSID> password <password> [hidden yes]
   nmcli connection delete CONNECTION_NAME # 上面连接失败后，以后的连接仍然用错误凭证，所以先删除
-  # 测试网络，直到连通
-  ping baidu.com
+  # 或者
+  wifi-menu
   ```
   
 - 更新时间
