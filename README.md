@@ -23,14 +23,9 @@
 - [C++](notes/c++.md)
 - [c#](notes/c#.md)
 
-## :point_right: 前端
-
-- [HTML-CSS](notes/HTML-CSS.md)
-
 ## :watermelon: 编码实践 
 
 - [代码可读性](notes/代码可读性.md)
-- [代码风格规范](notes/代码风格规范.md)
 
 ## :pencil2: 算法和数据结构
 
@@ -72,6 +67,8 @@
 ## :file_folder: Web
 - [攻击技术](notes/攻击技术.md)
 
+- [HTML/CSS](notes/HTML-CSS.md)
+
 ## :bulb: 系统设计 
 
 - [系统设计基础](notes/系统设计基础.md)
@@ -79,6 +76,10 @@
 - [集群](notes/集群.md)
 - [缓存](notes/缓存.md)
 - [消息队列](notes/消息队列.md)
+
+## :triangular_ruler:数学
+
+- [概率统计](notes/概率统计.md)
 
 ## :wrench: 其他
 

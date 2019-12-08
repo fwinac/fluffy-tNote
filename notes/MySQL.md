@@ -327,7 +327,7 @@ SELECT c FROM t WHERE c BETWEEN 10 and 20 FOR UPDATE;
 
 - 水平切分（分片）
   
-  插入、查询、整体服务s
+  插入、查询、整体服务
   选择分片：哈希、范围、
   `问题`
   ID 唯一、事务、连接
