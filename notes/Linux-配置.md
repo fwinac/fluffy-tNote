@@ -291,6 +291,11 @@ sudo apt purge remove linux-image/headers-
 
 debian 系在 blacklist 内核模块后需要 `sudo update-initramfs -u`
 
+# 省电
+
+1. 关闭 watchdog
+2. 安装 tlp，并根据 tlp-stat 配置
+
 # 发行版及桌面对比
 
 ## Windows
