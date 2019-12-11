@@ -10,7 +10,7 @@
 ## :computer: 操作系统
 
 - [操作系统原理](notes/计算机操作系统%20-%20目录.md)
-- [Linux](notes/Linux-目录.md)
+- [Linux](notes/linux目录.md)
 
 ## :cloud: 网络 
 
@@ -18,10 +18,6 @@
 - [HTTP](notes/HTTP.md)
 - [网络编程](notes/网络编程.md)
 
-## :o: C
-
-- [C++](notes/c++.md)
-- [c#](notes/c#.md)
 
 ## :watermelon: 编码实践 
 
@@ -29,32 +25,27 @@
 
 ## :pencil2: 算法和数据结构
 
-- [算法分析](notes/算法%20-%20算法分析.md)
-- [排序](notes/算法%20-%20排序.md)
-- [数据结构](notes/数据结构.md)
-- [其它](notes/算法%20-%20其它.md)
+- [算法分析](notes/算法算法分析.md)
+- [数据结构](notes/数据结构目录.md)
+- [排序](notes/算法排序.md)
+- [其它](notes/算法其它.md)
+- [解题](notes/算法解题.md)
 
-- [解题](notes/算法-解题.md)
+## :coffee: 语言
 
-## :coffee: Java
+- [C++](notes/c++.md)
+- [c#](notes/c#.md)
+- [Java](notes/java目录.md)
+- [Go](notes/go.md)
+- [Python](notes/python.md)
 
-- [Java 基础](notes/Java%20基础.md)
-- [Java 容器](notes/Java%20容器.md)
-- [Java 并发](notes/Java%20并发.md)
-- [Java 虚拟机](notes/Java%20虚拟机.md)
-- [Java I/O](notes/Java%20IO.md)
-- [Java 框架](notes/javaframework.md)
-- [Java Web](notes/javaweb.md)
+## :blossom: 前台
 
+- [HTML/CSS](notes/HTML-CSS.md)
 ## :art: 面向对象
 
 - [面向对象思想](notes/面向对象思想.md)
 - [设计模式](notes/设计模式.md)
-
-## :clap: Go
-
-- [Go 基础](notes/go基础.md)
-
 
 ## :floppy_disk: 数据库 
 
@@ -66,8 +57,7 @@
 
 ## :file_folder: Web
 - [攻击技术](notes/攻击技术.md)
-
-- [HTML/CSS](notes/HTML-CSS.md)
+- [Java Web](notes/javaweb.md)
 
 ## :bulb: 系统设计 
 
@@ -79,6 +69,7 @@
 
 ## :triangular_ruler:数学
 
+- [Python数学基础](notes/python数学基础.md)
 - [概率统计](notes/概率统计.md)
 
 ## :wrench: 其他
