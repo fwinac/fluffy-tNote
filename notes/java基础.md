@@ -539,6 +539,18 @@ public class Main {
 
 Java 注解是附加在代码中的一些元信息，用于一些**工具**在编译、运行时使用。
 
+# Optional
+
+Optional.of() 将一个值转化为 Optional;
+
+​	.ofNullable() 如果要转的为 null，上面的式子会报错
+
+**(Optional 实例).orElse(null);
+
+​	如果 Optional 包含的值为 null，上面表达式的值就为 null
+
+Optional 可以使用类似 Stream 的方法
+
 # Java 与 C++ 的区别
 
 - Java 基于虚拟机实现，有自动垃圾回收。

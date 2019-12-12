@@ -289,7 +289,17 @@ sudo apt purge remove linux-image/headers-
 
 # 内核模块
 
-debian 系在 blacklist 内核模块后需要 `sudo update-initramfs -u`
+- 分类
+
+  built-in or loadable(M)，loadable 可以运行时随意进出内核，而不需要重启。
+
+- DKMS
+
+  当内核变化时，包管理器的 hook 就会自动编译模块。这样，如果内核 ABI 变动，模块就不必紧贴内核更新，重新编译并发布新的二进制文件。
+
+- 使用
+
+  debian 系在 blacklist 内核模块后需要 `sudo update-initramfs -u`
 
 # 音频
 
