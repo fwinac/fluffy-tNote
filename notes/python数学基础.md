@@ -10,9 +10,13 @@
 
 - 单画布
 
+  plt.figure()
+  
   plt.plot(横轴坐标list，纵轴坐标list, 'bo', ms=8)
   
   ​	蓝色的原点，原点大小为8
+  
+  plt.gca().axes.set_xticks(), 获取当前画布的轴并设置 xticks
   
 - 多画布
 
@@ -52,21 +56,9 @@
 
   ​	归一化后，纵轴就表示某个范围内数据所占的比例。
 
+## 函数
 
-## 分布
+- PMF(Probability Mass Function)
 
-scipy.stats 有几十种离散或连续分布。可遍历 stats 的 \_\_dict\_\_ 来查看。
+  PMF 输入离散随机变量取的某个值，输出此时的概率
 
-- binom，二项分布
-
-  某种分布 = binom(n=10,p=0.5)
-
-  ​	连续投 10 次硬币的伯努利试验。如利用 rvs 取样，则大部分取样结果在 5。
-
-- 某种分布.rvs(size=10000)
-
-  ​	对某种分布的随机变量（rv）取样（sample）10000 次；
-
-- 某种分布.pmf(x)
-
-  ​	对输入 x list 通过 pmf 计算输出；取得 list 某个 item 在这种分布下的概率。

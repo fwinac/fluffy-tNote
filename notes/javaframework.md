@@ -52,7 +52,13 @@ public class {
 }
 ```
 
+### 注解
 
+- Conditional**On**\*\*(xx)
+
+  (Missing)Bean、Property
+
+  当条件 xx 不成立/成立时，才会产生该注解标注的 bean。(Missing)Bean 不适合用在集中配置类的 bean 上，因为它判断条件是否成立和多个配置类的加载顺序有关。
 
 ## Netty
 

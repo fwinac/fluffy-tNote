@@ -301,15 +301,31 @@ sudo apt purge remove linux-image/headers-
 
   debian 系在 blacklist 内核模块后需要 `sudo update-initramfs -u`
 
-# 音频
 
-1. 安装 pulseaduio
-2. 安装 pulseaduio-alsa
+# 安装后比做
 
-# 省电
+- 音频
+  1. 安装 pulseaduio
+  2. 安装 pulseaduio-alsa
+  
+- 省电
 
-1. 关闭 watchdog(Archwiki#Improving performance)
-2. 安装 tlp，并根据 tlp-stat 配置
+  1. 关闭 watchdog(Archwiki#Improving performance)
+  2. 安装 tlp，并根据 tlp-stat 配置
+
+- 关闭 audit log
+
+  在 boot parameter 中添加 audit=0
+
+- 安装 lts
+
+  linux-lts linux-lts-headers，以后安装软件使用 dkms 包
+
+  安装后重新生成 grub config
+
+- 安装 intel-code
+
+  安装后重新生成 grub config
 
 # 发行版及桌面对比
 
