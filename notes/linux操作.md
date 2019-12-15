@@ -39,23 +39,6 @@ YUM 基于 RPM，APT 基于 DPKG。前者都添加了在线功能。
   # -m 会创建用户的 home 目录；-r 创建 system account，不会创建 home 目录
   ```
 
-## 权限
-- SUID，SGID，Sticky Bit
-  
-  前两个表示执行该文件时，该文件的有效，变成了该文件的所属，而不是用户所属。
-  
-  ​	- passwd 命令需要修改 /etc/passwd 文件（该文件属于root），那么passwd 在不特权时是怎么修改自己的密码的
-  
-  ​	- SGID 设置在目录上时，在该目录下创建的文件的所属组和该目录一致。
-  
-  Sticky Bit 用在目录上，使该目录下的文件只能由所属用户删除
-  
-  ```shell
-  # 使用
-  chmod 4777 ** #SUID
-  chmod 2777 **
-  chmod 1777 **
-  ```
 
 
 # 求助

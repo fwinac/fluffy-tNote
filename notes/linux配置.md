@@ -287,22 +287,17 @@ sudo apt install linux-*.deb
 sudo apt purge remove linux-image/headers-
 ```
 
-# 内核模块
-
-- 分类
-
-  built-in or loadable(M)，loadable 可以运行时随意进出内核，而不需要重启。
-
-- DKMS
-
-  当内核变化时，包管理器的 hook 就会自动编译模块。这样，如果内核 ABI 变动，模块就不必紧贴内核更新，重新编译并发布新的二进制文件。
-
-- 使用
-
-  debian 系在 blacklist 内核模块后需要 `sudo update-initramfs -u`
-
 
 # 安装后比做
+- 安装 lts
+
+  linux-lts linux-lts-headers，以后安装软件使用 dkms 包
+
+  安装后重新生成 grub config
+
+- 安装 intel-code
+
+  安装后重新生成 grub config
 
 - 音频
   1. 安装 pulseaduio
@@ -317,15 +312,57 @@ sudo apt purge remove linux-image/headers-
 
   在 boot parameter 中添加 audit=0
 
-- 安装 lts
+- 自动挂载
 
-  linux-lts linux-lts-headers，以后安装软件使用 dkms 包
+  在 /etc/fstab 添加
 
-  安装后重新生成 grub config
+  ```
+  /dev/sda1	/media/C	ntfs	defaults,noatime,nosuid,nodev,x-gvfs-name=C盘	0 0
+  ```
 
-- 安装 intel-code
+  noatime，读取不要改变 atime，还有 strictatime、nodiratime、realtime（atime 落后于修改时间或上一个atime 已经过去二十四小时时才可以修改 atime）。
 
-  安装后重新生成 grub config
+  nosuid，避免分区包含危险可执行文件有 sid 属性，导致可能的 root 越权。
+
+  nodev,，避免分区包含设备文件，为了安全？
+
+  0 0 禁止检查分区错误
+
+- home 下文件夹为中文
+
+  修改 .config/user-dirs.dirs 或者 .config/user.dirs
+
+  ```
+  XDG_DESKTOP_DIR="$HOME/desktop"
+  XDG_DOWNLOAD_DIR="$HOME/downloads"
+  XDG_TEMPLATES_DIR="$HOME/template"
+  XDG_PUBLICSHARE_DIR="$HOME/public"
+  XDG_DOCUMENTS_DIR="$HOME/documents"
+  XDG_MUSIC_DIR="$HOME/music"
+  XDG_PICTURES_DIR="$HOME/pictures"
+  XDG_VIDEOS_DIR="$HOME/videos"
+  ```
+
+- apt 加速
+
+  ```
+  sudo apt install aptitude
+  sudo add-apt-repository ppa:apt-fast/stable
+  sudo apt update
+  sudo apt install apt-fast
+  安装过程中配置：
+  选择默认软件包管理工具：aptitude
+  选择线程数：16
+  显示确认下载对话框：n
+  在 /etc/apt-fast/conf 修改配置
+  
+  apt-fast install xx
+  
+  apt　设置代理
+  sudo apt-get -o Acquire::http::proxy="http://127.0.0.1:1080/" update
+  ```
+
+  
 
 # 发行版及桌面对比
 
