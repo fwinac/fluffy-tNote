@@ -280,6 +280,13 @@ g/re/p（globally search a regular expression and print)。
 $ ls -al /etc | less
 ```
 
+- xargs
+
+```
+	用 stdin 的列表（使用空格、换行等分割）重复执行 xargs 后面的命令，会尝试合并多个命令
+	也可直接 command1 $(command2)，如 pacman -Rs
+	```
+	
 - **cut**
 对数据逐行切分
 

@@ -48,6 +48,23 @@
   {'a': 1, '__module__': '__main__', 'tempFunction': <function tempFunction at 0x7f77951a95f0>, '__dict__': <attribute '__dict__' of 'TempClass' objects>, '__weakref__': <attribute '__weakref__' of 'TempClass' objects>, '__doc__': None}
   ```
 
+## 操作
+
+- 读取文件
+
+  ```python
+  with open(file_path,'r') as f:
+      content = f.readlines()
+      for line in content:
+  ```
+
+- 判断字符是否在某个字符串中
+
+  ```python
+  if 'Abc' in line or 'Def' in line:
+      return True
+  ```
+
 ## 模块
 
 - 模块名
@@ -65,6 +82,19 @@
   stats.binom()
   from scipy.stats import binom
   binom()
+  ```
+
+- glob，使用 glob 获取一堆路径
+
+  ```python
+  glob.glob("/usr/share/*")# 返回 List
+  ```
+
+- subprocess, 在 shell 执行命令
+
+  ```python
+  packageName = subprocess.run('command', shell=True[, stdout= subprocess,PIPE])
+  packageName = packageName.stdout.decode("utf-8").strip()
   ```
 
   
