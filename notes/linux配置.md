@@ -288,7 +288,7 @@ sudo apt purge remove linux-image/headers-
 ```
 
 
-# 安装后比做
+# 安装后必做
 - 安装 lts
 
   linux-lts linux-lts-headers，以后安装软件使用 dkms 包
@@ -302,7 +302,7 @@ sudo apt purge remove linux-image/headers-
 - 音频
   1. 安装 pulseaduio
   2. 安装 pulseaduio-alsa
-  
+
 - 省电
 
   1. 关闭 watchdog(Archwiki#Improving performance)
@@ -360,6 +360,21 @@ sudo apt purge remove linux-image/headers-
   
   apt　设置代理
   sudo apt-get -o Acquire::http::proxy="http://127.0.0.1:1080/" update
+  ```
+
+- snap 设置代理
+
+  ```
+  # 开始设置代理
+  $ sudo systemctl edit snapd
+  加上：
+  [Service]
+  Environment="http_proxy=http://127.0.0.1:port"
+  Environment="https_proxy=http://127.0.0.1:port"
+  
+  #保存退出。
+  $ sudo systemctl daemon-reload
+  $ sudo systemctl restart snapd
   ```
 
   
