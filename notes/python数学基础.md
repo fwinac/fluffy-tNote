@@ -11,13 +11,17 @@
 - 单画布
 
   plt.figure()
-  
+
   plt.plot(横轴坐标list，纵轴坐标list, 'bo', ms=8)
-  
-  ​	蓝色的原点，原点大小为8
-  
+
+  ​	蓝色的原点，原点大小为8。默认不是圆点，则设置 lw
+
+  ​	可设置画的这条线的 label，然后通过 ax.legend(loc='best',frameon=False) 启用显示 label
+
+  ​	可设置透明度 alpha=0.6
+
   plt.gca().axes.set_xticks(), 获取当前画布的轴并设置 xticks
-  
+
 - 多画布
 
   fig,axs = plt.subplots(3, 1)
@@ -58,7 +62,7 @@
 
 ## 函数
 
-- PMF(Probability Mass Function)
+- numpy.linspace(-10,10,1000)
 
-  PMF 输入离散随机变量取的某个值，输出此时的概率
+  ​	在 -10 到 10 之间，均匀的生成 1000 个点
 
