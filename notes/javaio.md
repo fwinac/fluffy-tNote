@@ -1,14 +1,20 @@
 
 # 概览
 
-Java 的 I/O 大概可以分成以下几类：
+- 操作分类
 
-- 磁盘操作：File
-- 字节操作：InputStream 和 OutputStream
-- 字符操作：Reader 和 Writer
-- 对象操作：Serializable
-- 网络操作：Socket
-- 新的输入/输出：NIO
+  Java 的 I/O 大概可以分成以下几类：
+
+  - 磁盘操作：File
+  - 字节操作：InputStream 和 OutputStream
+  - 字符操作：Reader 和 Writer
+  - 对象操作：Serializable
+  - 网络操作：Socket
+  - 新的输入/输出：NIO
+
+- 路径
+
+  一般操作的读取的（相对）路径，是 classpath 中的路径。所以得使用绝对路径来操作外部文件，可用 `System.getProperty("user.dir")`来获取“执行程序所在文件夹”的绝对路径。
 
 # 磁盘操作
 

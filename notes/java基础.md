@@ -529,11 +529,22 @@ public class Main {
 
 # 泛型
 
-- **泛型数组**
-	
-	<div align="center"> <img src="pics/20190427143259.png" width="600"/> </div><br>
-- **擦除**
-擦除会擦除到 Object 类型。所以泛型不能是原始类型。
+- 泛型数组
+
+  <div align="center"> <img src="pics/20190427143259.png" width="600"/> </div><br>
+
+- 擦除
+  擦除会擦除到 Object 类型。所以泛型不能是原始类型。
+
+- List<?>
+
+  不指定 LIst 容纳的具体类型，但是这个类型一旦确定，以后就固定了，其他类型不能再放入。
+
+  不同于：
+
+  `List`
+
+  不指定具体类型，但是所有类型都可以一直放入。
 
 # 注解
 

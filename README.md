@@ -19,16 +19,12 @@
 - [网络编程](notes/网络编程.md)
 
 
-## :watermelon: 编码实践 
-
-- [代码可读性](notes/代码可读性.md)
-
 ## :pencil2: 算法和数据结构
 
 - [算法分析](notes/算法算法分析.md)
 - [数据结构](notes/数据结构目录.md)
 - [排序](notes/算法排序.md)
-- [其它](notes/算法其它.md)
+- [常用算法和结构](notes/算法常用算法和结构.md)
 - [解题](notes/算法解题.md)
 
 ## :coffee: 语言
@@ -42,6 +38,12 @@
 ## :blossom: 前台
 
 - [HTML/CSS](notes/HTML-CSS.md)
+
+## :watermelon: 编码实践 
+
+- [代码可读性](notes/代码可读性.md)
+- [代码Tips](notes/代码Tips.md)
+
 ## :art: 面向对象
 
 - [面向对象思想](notes/面向对象思想.md)
