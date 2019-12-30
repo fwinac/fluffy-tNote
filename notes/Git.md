@@ -9,33 +9,43 @@ Git 属于分布式"版本控制系统"，而 SVN 属于集中式。
 
 分布式版本控制新建分支、合并分支操作速度非常快，而集中式版本控制新建一个分支相当于复制一份完整代码。
 
-# 中心服务器
-
-中心服务器用来交换每个用户的修改，没有中心服务器也能工作，但是中心服务器能够 24 小时保持开机状态，这样就能更方便的交换修改。
-
-Github 就是一个中心服务器。
-
 # 工作流
 
-新建一个仓库 `（git init）` 之后，当前目录就成为了工作区，工作区下有一个目录 .git，它属于 Git 的版本库，版本库保存历史版本等信息。
+- HEAD
 
-Git 的版本库有一个称为 Stage （暂存区）以及 History 版本库，History 中存有所有分支，使用一个 HEAD 指针指向当前分支。
+  当前分支的 tip
 
-<div align="center"> <img src="pics/0f9b9d2a-c5cc-4a3f-b138-2c1035950f39_200.png"/> </div><br>
+- Index
 
-- git add files 把文件的修改添加到暂存区
-- git commit 把暂存区的修改提交到当前分支，提交之后暂存区就被清空了
-- git reset -- files 使用当前分支上的修改覆盖暂存区，用来撤销最后一次 git add files
-- git checkout -- files 使用暂存区的修改覆盖工作目录，用来撤销本地修改
+  Staging for commit.
 
-<div align="center"> <img src="pics/11a786f0-5e02-46a6-92f0-f302c9cf6ca3_200.png"/> </div><br>
+- Working copy
 
-可以跳过暂存区域直接从分支中取出修改，或者直接提交修改到分支中。
+  操作的文件夹中的文件
 
-- git commit -a 直接把所有文件的修改添加到暂存区然后执行提交
-- git checkout HEAD -- files 取出最后一次修改，可以用来进行回滚操作
+- 基本过程
 
-<div align="center"> <img src="pics/b48b9a7a-f9f8-4cf9-90f1-5cddd685b782_200.png"/> </div><br>
+  <div align="center"> <img src="pics/0f9b9d2a-c5cc-4a3f-b138-2c1035950f39_200.png"/> </div><br>
+
+- 重置
+  - git reset -- files 使用当前分支上的修改覆盖暂存区，用来撤销最后一次 git add files
+
+  - git checkout -- files 使用暂存区的修改覆盖工作目录，用来撤销本地修改
+
+    <div align="center"> <img src="pics/11a786f0-5e02-46a6-92f0-f302c9cf6ca3_200.png"/> </div>
+
+  - git reset HEAD
+
+    nothing happens. 
+
+    HEAD~1，用 HEAD commit 的前一个 commit 来 reset
+
+    重置的方式，有：
+
+    1. --soft，把 HEAD reset 到某个 commit，但是 index 和 working copy 不变
+    2. --mixed，默认；把 HEAD 和 index 到 reset 到某个 commit
+    3. --hard，把三者都重置
+
 
 # 分支实现
 
@@ -136,7 +146,7 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
    ```shell
    git clone $REPO_LOCATION --depth 1
    ```
-  除为了浏览代码外，一般不要使用。
+    除为了浏览代码外，一般不要使用。
 
 - **压缩git仓库大小**  
 	[BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
