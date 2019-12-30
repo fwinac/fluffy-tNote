@@ -38,6 +38,7 @@
 ## :blossom: 前台
 
 - [HTML/CSS](notes/HTML-CSS.md)
+- [flutter](notes/flutter.md)
 
 ## :watermelon: 编码实践 
 
