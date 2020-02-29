@@ -12,6 +12,8 @@
 - [操作系统原理](notes/计算机操作系统%20-%20目录.md)
 - [Linux](notes/linux目录.md)
 
+- [Docker](notes/Docker.md)
+
 ## :cloud: 网络 
 
 - [网络原理](notes/计算机网络-目录.md)
@@ -40,15 +42,24 @@
 - [HTML/CSS](notes/HTML-CSS.md)
 - [flutter](notes/flutter.md)
 
+## :file_folder: Web
+- [攻击技术](notes/攻击技术.md)
+- [Java Web](notes/javaweb.md)
+
 ## :watermelon: 编码实践 
 
 - [代码可读性](notes/代码可读性.md)
 - [代码Tips](notes/代码Tips.md)
-
-## :art: 面向对象
+- [测试](notes/测试.md)
+## :art: 系统设计
 
 - [面向对象思想](notes/面向对象思想.md)
 - [设计模式](notes/设计模式.md)
+- [系统设计基础](notes/系统设计基础.md)
+- [分布式](notes/分布式.md)
+- [集群](notes/集群.md)
+- [缓存](notes/缓存.md)
+- [消息队列](notes/消息队列.md)
 
 ## :floppy_disk: 数据库 
 
@@ -58,19 +69,6 @@
 - [MySQL](notes/MySQL.md)
 - [Redis](notes/Redis.md)
 
-## :file_folder: Web
-- [攻击技术](notes/攻击技术.md)
-- [Java Web](notes/javaweb.md)
-
-## :bulb: 系统设计 
-
-- [测试](notes/测试.md)
-- [系统设计基础](notes/系统设计基础.md)
-- [分布式](notes/分布式.md)
-- [集群](notes/集群.md)
-- [缓存](notes/缓存.md)
-- [消息队列](notes/消息队列.md)
-
 ## :triangular_ruler:数学
 
 - [Python数学基础](notes/python数学基础.md)
@@ -79,6 +77,5 @@
 ## :wrench: 其他
 
 - [Git](notes/Git.md)
-- [Docker](notes/Docker.md)
 - [正则表达式](notes/正则表达式.md)
 - [DevOps](notes/devops.md)
