@@ -138,6 +138,10 @@
 
   镜像会继承父镜像开放的端口（EXPOSE），但如果镜像有自己的 CMD，则不会继承启动命令（CMD）。
 
+- Multi-Stage Build
+
+  当一个产品最终的运行需要多个步骤。比如 golang 在 golang 镜像 build，再在普通环境运行，常规做法是写多个 Dockerfile。Multi-Stage Build 在一个 Dockerfile 执行多个阶段，但是只有最后一个阶段是最后用的镜像。
+
 - 优化
 
   1. apt update 后，`apt clean`，`rm -rf /var/lib/apt/lists/*`
