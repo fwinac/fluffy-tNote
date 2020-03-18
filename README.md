@@ -47,14 +47,11 @@
 - [Java Web](notes/javaweb.md)
 
 ## :watermelon: 编码实践 
-
 - [代码可读性](notes/代码可读性.md)
-- [代码Tips](notes/代码Tips.md)
-- [测试](notes/测试.md)
-## :art: 系统设计
-
 - [面向对象思想](notes/面向对象思想.md)
 - [设计模式](notes/设计模式.md)
+- [测试](notes/测试.md)
+## :art: 系统设计
 - [系统设计基础](notes/系统设计基础.md)
 - [分布式](notes/分布式.md)
 - [集群](notes/集群.md)

@@ -142,6 +142,17 @@
 
   当一个产品最终的运行需要多个步骤。比如 golang 在 golang 镜像 build，再在普通环境运行，常规做法是写多个 Dockerfile。Multi-Stage Build 在一个 Dockerfile 执行多个阶段，但是只有最后一个阶段是最后用的镜像。
 
+  需要有几个阶段:
+
+  运行：base 和 final，编译：build 或还需 publish。
+
+  需要注意以下：
+
+  1. 每个 Stage 应该首设 WORKDIR，再进行其他操作。
+
+  2. build 后的 binary 应该拷贝到一个独立文件夹，方便 final 从整个文件夹 COPY。
+  3. base 要设定 EXPOSE。
+
 - 优化
 
   1. apt update 后，`apt clean`，`rm -rf /var/lib/apt/lists/*`
@@ -167,3 +178,6 @@
 - 为什么要用特权才能操作?
 
   docker daemon 绑定在 unix socket 上，该 socket 属于 root:docker，只有 root 和 docket 组才能读取
+
+# K8S
+
