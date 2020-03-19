@@ -48,7 +48,7 @@
 
 ## :watermelon: 编码实践 
 - [代码可读性](notes/代码可读性.md)
-- [面向对象思想](notes/面向对象思想.md)
+- [面向对象设计](notes/面向对象设计.md)
 - [设计模式](notes/设计模式.md)
 - [测试](notes/测试.md)
 ## :art: 系统设计
@@ -57,6 +57,7 @@
 - [集群](notes/集群.md)
 - [缓存](notes/缓存.md)
 - [消息队列](notes/消息队列.md)
+- [微服务](notes/微服务.md)
 
 ## :floppy_disk: 数据库 
 
